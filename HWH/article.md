@@ -69,6 +69,30 @@ This is where [Hindsight’s persistent agent memory on GitHub](https://github.c
 
 I think of this as application evidence plus agent memory, not a replacement of one by the other. The distinction is close to the broader idea of [agent memory for carrying useful context across interactions](https://vectorize.io/what-is-agent-memory), but the implementation only earns that label when the retrieved context can be tied back to things the user actually uploaded or said.
 
+The difference became clearer when we compared how SocialPulse handled recommendations before and after adding Hindsight.
+
+## Before Hindsight
+
+SocialPulse could analyze the dataset available in the current session and generate a recommendation from those results.
+
+For example:
+
+“Carousel posts are performing better based on the current dataset.”
+
+The recommendation was based on the data currently available, but the system did not have the previous analysis available as context for future recommendations.
+
+## After Hindsight
+
+With Hindsight integrated, SocialPulse can store previous analysis results and retrieve relevant memories when generating a new recommendation.
+
+The same type of recommendation can now take historical context into account:
+
+“Carousel posts performed well in the previous analysis, and the current dataset shows a similar pattern. This provides additional evidence for testing more carousel content.”
+
+The important change is not simply that the recommendation contains more information. The system now has access to previous results alongside the current analysis, allowing historical evidence to become part of the recommendation process.
+
+This showed us why storing results can be more useful than storing only a final preference: the system can refer back to the evidence that produced an earlier conclusion instead of treating that conclusion as an isolated fact.
+
 ## What a recommendation interaction looks like
 
 Suppose a travel brand uploads a batch of posts and asks, “What should I try next if I want more saves?” The analytics can report which formats and posts had higher save counts if those fields exist, how many posts support each observation, and whether the dataset contains actual posting times. Hindsight can return relevant prior post results, feedback, or recommendations that were retained earlier. The model can then propose a new post format and caption as a test, explain which current measurements informed it, and mention a relevant remembered result.
