@@ -5,6 +5,8 @@ A recommendation that says “your audience likes carousels” sounds useful rig
 ## The system I wanted to build
 
 Social Pulse helps a brand review social-post performance and plan what to publish next. A user uploads a CSV of post text, dates, formats, and engagement counts. The application validates and normalizes those rows, calculates performance metrics, and builds an evidence summary. It can then combine that current analysis with relevant history recalled from Hindsight to generate practical content ideas.
+<img width="1600" height="711" alt="image" src="https://github.com/user-attachments/assets/b82fa625-b523-4dc5-8eac-694d6fe224ba" />
+
 
 The pieces have distinct jobs. Pandas and the analytics module calculate what the loaded dataset says. Hindsight retains durable context across sessions: post-level outcomes, analysis updates, brand details, feedback, and past recommendations. The language model turns the supplied evidence into a response. It does not update its weights or “learn” by retraining after each upload.
 
@@ -25,6 +27,7 @@ content = (
     f"{float(row['Engagement rate']):.2f}% engagement rate."
 )
 ```
+<img width="1600" height="707" alt="image" src="https://github.com/user-attachments/assets/f0bc81cd-8f05-47ab-8947-fcaf0eff5303" />
 
 This is not a claim that raw rows are always the ideal memory representation. It is a choice to preserve enough detail that a future question can retrieve a relevant result instead of inheriting only a conclusion. Record-type metadata and context labels distinguish a post result from an audience signal or a user note. That makes memory useful for retrieval while keeping the stored text legible to an engineer debugging what the agent saw.
 
@@ -41,6 +44,7 @@ parts = [
 if user_note.strip():
     parts.append(f"User-provided result context or audience feedback: {user_note.strip()}")
 ```
+<img width="1600" height="611" alt="image" src="https://github.com/user-attachments/assets/27570811-63a2-4bce-9081-386ca0667c6d" />
 
 I deliberately describe keyword matches as proxies, not verified topics. A caption containing “guide” is not proof that a post belongs to a coherent “guide” category, much less that its audience likes that category. The analytics preserve sample counts, and recommendation instructions tell the model to treat fewer than three examples as preliminary. Those aren’t glamorous details. They are the difference between a useful hypothesis and confident folklore.
 
@@ -68,10 +72,15 @@ I think of this as application evidence plus agent memory, not a replacement of 
 ## What a recommendation interaction looks like
 
 Suppose a travel brand uploads a batch of posts and asks, “What should I try next if I want more saves?” The analytics can report which formats and posts had higher save counts if those fields exist, how many posts support each observation, and whether the dataset contains actual posting times. Hindsight can return relevant prior post results, feedback, or recommendations that were retained earlier. The model can then propose a new post format and caption as a test, explain which current measurements informed it, and mention a relevant remembered result.
+<img width="1077" height="847" alt="image" src="https://github.com/user-attachments/assets/3d3acb61-79a1-4b21-8ce8-791d68e608e3" />
+
+
 
 If the CSV contains dates but no clock times, the answer should not invent a best hour. The analytics explicitly distinguish midnight-only date values from observed timestamps. Likewise, a high average from one post should remain a weak signal, not become an audience law. When no relevant memory comes back, the system can still use current evidence, but it should not pretend the agent recalled something.
 
 After publishing outside the app, the user can upload the new result and include an optional note. The next recommendation can retrieve that outcome in relation to the request at hand. The model is not magically becoming more capable; the application is giving it a better record of what this brand tried and what happened afterward.
+<img width="1125" height="477" alt="image" src="https://github.com/user-attachments/assets/96ab769a-4688-40d8-8442-51b615d34f7a" />
+
 
 That loop is why I store results rather than only preferences. A preference summary can answer “what do we think works?” An outcome record can also help answer “what led us to think that, how strong was the evidence, and what should we test next?”
 
