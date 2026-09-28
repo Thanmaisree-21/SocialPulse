@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Pulse ✳ — Creative Intelligence Studio &amp; AI Social Media Agent</title>
+  <meta name="description" content="Social Pulse is an interactive AI social media agent that learns what your audience actually responds to, predicts engagement scores, and synchronizes live creative mockups.">
+  
+  <!-- Premium Editorial Google Fonts: Syne (Ultra-bold display), Manrope (Services headings), Space Grotesk (Studio UI), Inter (Body), JetBrains Mono (Metadata) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Manrope:wght@600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Inline SVG Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230D0D11'/><text x='50' y='72' font-size='60' text-anchor='middle' fill='%23FFE082' font-family='sans-serif'>✳</text></svg>">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="editorial-studio-body">
+
+  <!-- ========================================================
+       TOP NAVIGATION BAR: HOME / WORKS / SERVICES / AGENT / CONTACT
+       ======================================================== -->
+  <header class="studio-header-wrap" id="topNav">
+    <div class="studio-header-inner">
+      
+      <!-- Brand Logo / Studio Mark -->
+      <div class="studio-brand">
+        <a href="#home" class="studio-logo-link">
+          <span class="studio-brand-symbol">✳</span>
+          <div class="studio-brand-titles">
+            <span class="studio-brand-name">Social Pulse</span>
+            <span class="studio-brand-badge">STUDIO · AGENT 2.4</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Links: HOME / WORKS / SERVICES / AGENT / CONTACT -->
+      <nav class="studio-nav-menu" aria-label="Studio Main Navigation">
+        <a href="#home" class="studio-nav-item active">HOME</a>
+        <a href="#works" class="studio-nav-item">WORKS</a>
+        <a href="#services" class="studio-nav-item">SERVICES</a>
+        <a href="#agentStudio" class="studio-nav-item">AGENT</a>
+        <a href="#contact" class="studio-nav-item">CONTACT</a>
+      </nav>
+
+      <!-- Brand Context & Actions (Preserves all existing elements) -->
+      <div class="studio-header-actions">
+        
+        <!-- Quick Brand Context Selector (Preserved for functionality) -->
+        <div class="brand-context-pill" title="Active Campaign & Dataset Context">
+          <span class="platform-icon" id="currentPlatformIcon">✈️</span>
+          <select id="brandSelect" class="brand-dropdown-seamless" aria-label="Select active brand">
+            <option value="wanderlust" selected>Wanderlust Chronicles</option>
+          </select>
+        </div>
+
+        <!-- Live Intelligence Dot -->
+        <div class="studio-live-pill" title="Hindsight Memory Stream Active">
+          <span class="live-dot-pulse"></span>
+          <span class="live-pill-text">Memory Active</span>
+        </div>
+
+        <!-- Notifications Dropdown Trigger (Preserved) -->
+        <div class="notifications-wrapper">
+          <button id="notifButton" class="studio-icon-btn" aria-label="View notifications" aria-expanded="false" title="Audience & Memory Alerts">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notif-badge">3</span>
+          </button>
+          
+          <!-- Notifications Popover -->
+          <div class="notifications-popover studio-popover" id="notifPopover" hidden>
+            <div class="popover-header">
+              <h4>Memory &amp; Audience Alerts</h4>
+              <button class="text-btn-xs" id="clearNotifsBtn">Clear all</button>
+            </div>
+            <ul class="notif-list">
+              <li class="notif-item unread">
+                <span class="notif-icon">🚀</span>
+                <div class="notif-content">
+                  <p class="notif-title">High Engagement Anomaly</p>
+                  <p class="notif-desc">Kashmir Mistakes Carousel reached <strong>18.81% ER</strong> with 2,100 saves.</p>
+                  <span class="notif-time">2 hours ago</span>
+                </div>
+              </li>
+              <li class="notif-item unread">
+                <span class="notif-icon">🧠</span>
+                <div class="notif-content">
+                  <p class="notif-title">Hindsight Memory Recalled</p>
+                  <p class="notif-desc">Audience prefers actionable bulleted checklists over broad narrative captions.</p>
+                  <span class="notif-time">Yesterday</span>
+                </div>
+              </li>
+              <li class="notif-item">
+                <span class="notif-icon">⏰</span>
+                <div class="notif-content">
+                  <p class="notif-title">Optimal Timing Window</p>
+                  <p class="notif-desc">Friday posts show <strong>15.52% mean engagement</strong> (highest weekday).</p>
+                  <span class="notif-time">Yesterday</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- User Profile Pill -->
+        <div class="user-pill-tag">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=120&h=120&q=80" alt="User avatar" class="user-avatar-round" id="userAvatarImg">
+          <span class="user-name-label" id="displayUsername">Wanderlust Chronicles</span>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       MAIN APP CONTAINER
+       ======================================================== -->
+  <main class="studio-main-container">
+    
+    <!-- ========================================================
+         HERO SECTION: EDITORIAL STATEMENT & 3D REACTION OBJECTS
+         ======================================================== -->
+    <section class="studio-hero-section" id="home">
+      <div class="hero-parallax-canvas" id="heroParallaxCanvas">
+        
+        <!-- Eyebrow Tag -->
+        <div class="hero-eyebrow-row">
+          <span class="studio-tag-pill pastel-yellow">AI ENGAGEMENT AGENT</span>
+          <span class="hero-divider-dot">·</span>
+          <span class="hero-context-text">PERSISTENT HINDSIGHT MEMORY</span>
+          <span class="hero-divider-dot">·</span>
+          <span class="hero-context-text">30 TRAVEL POSTS ANALYZED</span>
+        </div>
+
+        <!-- Huge Bold Headline -->
+        <div class="hero-headline-wrap">
+          <h1 class="hero-giant-title">
+            <span class="hero-giant-line" data-depth="0.02">YOUR AUDIENCE.</span>
+            <span class="hero-giant-line" data-depth="0.04">YOUR CONTENT.</span>
+            <span class="hero-giant-line hero-line-accent" data-depth="0.06">YOUR GROWTH.</span>
+          </h1>
+        </div>
+
+        <!-- Subtitle -->
+        <p class="hero-statement-subtitle">
+          An AI engagement agent that learns what your audience actually responds to.
+        </p>
+
+        <!-- CTA & Badge Row -->
+        <div class="hero-cta-group">
+          <a href="#agentStudio" class="studio-cta-btn">
+            <span>EXPLORE THE AGENT</span>
+            <span class="cta-arrow">→</span>
+          </a>
+          <div class="hero-stats-inline">
+            <span class="stats-badge-soft pastel-green">● 13.9% Avg Engagement</span>
+            <span class="stats-badge-soft pastel-blue">● Carousels Top Format (15.5%)</span>
+          </div>
+        </div>
+
+        <!-- Floating 3D Social-Reaction Interactive Object -->
+        <div class="floating-3d-cluster" id="floating3DCluster">
+          
+          <!-- Central 3D Reaction Sphere Card -->
+          <div class="reaction-sphere-card" data-parallax-depth="0.12">
+            <div class="reaction-3d-mesh">
+              <div class="heart-3d-icon">❤️</div>
+              <div class="mesh-glow-sphere"></div>
+            </div>
+            <div class="reaction-metric-box">
+              <span class="metric-num">24.8k</span>
+              <span class="metric-caption">Audience Resonance</span>
+            </div>
+            <div class="reaction-sentiment-pill pastel-green">
+              <span>98% Memory Alignment</span>
+            </div>
+          </div>
+
+          <!-- Floating Satellite 3D Reaction Badges -->
+          <div class="satellite-badge sat-1 pastel-pink" data-parallax-depth="0.18">
+            <span class="sat-emoji">🔖</span>
+            <div class="sat-text">
+              <strong>+38% Saves</strong>
+              <small>Checklist Format</small>
+            </div>
+          </div>
+
+          <div class="satellite-badge sat-2 pastel-blue" data-parallax-depth="0.22">
+            <span class="sat-emoji">🎬</span>
+            <div class="sat-text">
+              <strong>397 Avg Shares</strong>
+              <small>9:16 Video Velocity</small>
+            </div>
+          </div>
+
+          <div class="satellite-badge sat-3 pastel-yellow" data-parallax-depth="0.15">
+            <span class="sat-emoji">⏰</span>
+            <div class="sat-text">
+              <strong>Friday Peak</strong>
+              <small>15.52% Mean ER</small>
+            </div>
+          </div>
+
+          <!-- Floating Social Glyphs -->
+          <div class="social-orb orb-instagram" data-parallax-depth="0.25" title="Instagram Native">📸</div>
+          <div class="social-orb orb-youtube" data-parallax-depth="0.28" title="YouTube Shorts">🎬</div>
+          <div class="social-orb orb-thread" data-parallax-depth="0.20" title="Thread / X">🧵</div>
+
+        </div>
+
+      </div>
+
+      <!-- ========================================================
+           SUB-HERO SECTION: FLOATING STICKERS & STATEMENT
+           ======================================================== -->
+      <div class="subhero-audience-section">
+        
+        <div class="subhero-inner">
+          <p class="subhero-lead-kicker">REAL-TIME SIGNAL DECODING</p>
+          <h2 class="subhero-bold-statement">
+            "Your audience is trying to tell you something."
+          </h2>
+          <p class="subhero-desc">
+            Every save, comment, replay, and share is an explicit blueprint. Social Pulse decodes what patterns drive action, retaining memory across every campaign.
+          </p>
+
+          <!-- Floating Interactive Labels / Stickers -->
+          <div class="floating-labels-stage" id="floatingLabelsStage">
+            <span class="floating-studio-label sticker-post pastel-blue" data-tilt="-4">
+              <span class="sticker-icon">📸</span>
+              <span>POST</span>
+            </span>
+            <span class="floating-studio-label sticker-reel pastel-pink" data-tilt="3">
+              <span class="sticker-icon">🎬</span>
+              <span>REEL</span>
+            </span>
+            <span class="floating-studio-label sticker-story pastel-yellow" data-tilt="-2">
+              <span class="sticker-icon">⏳</span>
+              <span>STORY</span>
+            </span>
+            <span class="floating-studio-label sticker-sentiment pastel-green" data-tilt="4">
+              <span class="sticker-icon">⚡</span>
+              <span>SENTIMENT</span>
+            </span>
+            <span class="floating-studio-label sticker-memory pastel-coral" data-tilt="-3">
+              <span class="sticker-icon">🧠</span>
+              <span>MEMORY</span>
+            </span>
+            <span class="floating-studio-label sticker-audience pastel-lavender" data-tilt="2">
+              <span class="sticker-icon">👥</span>
+              <span>AUDIENCE</span>
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Marquee Ticker Tape -->
+        <div class="studio-marquee-track">
+          <div class="marquee-content-row">
+            <span>SOCIAL PULSE ✳</span>
+            <span>AUDIENCE INTELLIGENCE</span>
+            <span>PERSISTENT HINDSIGHT</span>
+            <span>30 POSTS ANALYZED</span>
+            <span>CAROUSELS 15.52% ER</span>
+            <span>VIRAL HOOK PREDICTOR</span>
+            <span>WANDERLUST CHRONICLES</span>
+            <span>SOCIAL PULSE ✳</span>
+            <span>AUDIENCE INTELLIGENCE</span>
+            <span>PERSISTENT HINDSIGHT</span>
+            <span>30 POSTS ANALYZED</span>
+            <span>CAROUSELS 15.52% ER</span>
+            <span>VIRAL HOOK PREDICTOR</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 01: WORKS / PERFORMANCE EVIDENCE
+         ======================================================== -->
+    <section class="studio-section" id="works" aria-label="Performance Evidence and Works">
+      <div class="studio-section-header">
+        <div class="section-num-title">
+          <span class="section-index-num">01</span>
+          <div>
+            <span class="section-meta-eyebrow">HISTORICAL EVIDENCE</span>
+            <h2 class="section-main-heading">Performance Evidence &amp; Works</h2>
+          </div>
+        </div>
+        <p class="section-header-desc">
+          Audience intelligence derived from your authentic <span id="greetingUsername">Wanderlust Chronicles</span> campaign library.
+        </p>
+      </div>
+
+      <!-- Editorial Stats Pill Bar (Preserves All Stats Elements) -->
+      <div class="editorial-stats-grid" role="region" aria-label="Campaign benchmark stats">
+        <div class="editorial-stat-card pastel-yellow-soft">
+          <span class="stat-card-label">DATASET SCOPE</span>
+          <strong class="stat-card-value" id="statPostsCount">30 Posts Analyzed</strong>
+          <span class="stat-card-sub">Travel &amp; Cultural Exploration</span>
+        </div>
+
+        <div class="editorial-stat-card pastel-green-soft">
+          <span class="stat-card-label">BENCHMARK ENGAGEMENT</span>
+          <strong class="stat-card-value" id="statAvgEngagement">13.9% Avg Engagement</strong>
+          <span class="stat-card-badge pastel-green">+2.4% vs industry baseline</span>
+        </div>
+
+        <div class="editorial-stat-card pastel-pink-soft">
+          <span class="stat-card-label">BEST PERFORMING FORMAT</span>
+          <strong class="stat-card-value" id="statTopFormat">Top Format: Carousels 📚</strong>
+          <span class="stat-card-sub">15.52% ER · Peak saves &amp; retention</span>
+        </div>
+
+        <div class="editorial-stat-card pastel-blue-soft">
+          <span class="stat-card-label">HINDSIGHT BANK</span>
+          <strong class="stat-card-value">social-pulse-demo</strong>
+          <span class="stat-card-badge pastel-blue">● Continuous Learning Active</span>
+        </div>
+      </div>
+
+      <!-- Historical Works Showcase Grid -->
+      <div class="works-showcase-grid">
+        
+        <article class="work-showcase-card">
+          <div class="work-card-media">
+            <img src="assets/kashmir_preview.jpg" alt="Kashmir Dal Lake Carousel Guide" class="work-img">
+            <span class="work-format-tag pastel-yellow">CAROUSEL · 4:5</span>
+            <span class="work-metric-badge">18.81% ER</span>
+          </div>
+          <div class="work-card-body">
+            <div class="work-meta-row">
+              <span class="work-date">2026-08-28</span>
+              <span class="work-saves">🔖 2,100 Saves (#1 In Dataset)</span>
+            </div>
+            <h3 class="work-title">5 Mistakes to Avoid on Your First Kashmir Trip</h3>
+            <p class="work-takeaway">
+              <strong>Why it won:</strong> High-utility checklist framing with specific times (6:30 AM shikara) drove record bookmarking.
+            </p>
+          </div>
+        </article>
+
+        <article class="work-showcase-card">
+          <div class="work-card-media">
+            <img src="assets/bali_preview.jpg" alt="Bali 3-Day Budget Reel" class="work-img">
+            <span class="work-format-tag pastel-pink">REEL · 9:16</span>
+            <span class="work-metric-badge">15.43% ER</span>
+          </div>
+          <div class="work-card-body">
+            <div class="work-meta-row">
+              <span class="work-date">2026-09-04</span>
+              <span class="work-saves">↗️ 740 Shares (Peak Viral Spread)</span>
+            </div>
+            <h3 class="work-title">3 Days in Bali for Under $30/Day (Itinerary)</h3>
+            <p class="work-takeaway">
+              <strong>Why it won:</strong> Rapid expense ticker in the first 3 seconds stopped scrollers immediately and drove peer sharing.
+            </p>
+          </div>
+        </article>
+
+        <article class="work-showcase-card">
+          <div class="work-card-media">
+            <img src="assets/manali_preview.jpg" alt="Manali Solang Valley Snow Reel" class="work-img">
+            <span class="work-format-tag pastel-green">REEL · 9:16</span>
+            <span class="work-metric-badge">15.47% ER</span>
+          </div>
+          <div class="work-card-body">
+            <div class="work-meta-row">
+              <span class="work-date">2026-09-20</span>
+              <span class="work-saves">👥 32k Impressions · 4,950 Engagements</span>
+            </div>
+            <h3 class="work-title">Hidden Snow Valley Near Solang Pass</h3>
+            <p class="work-takeaway">
+              <strong>Why it won:</strong> "Hidden gem" curiosity trigger paired with Saturday evening posting window.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 02: SERVICES HUB — "WHAT'S ON YOUR MIND?"
+         ======================================================== -->
+    <section class="studio-section studio-services-section" id="services" aria-label="What's On Your Mind - Interactive Creative Services">
+      
+      <!-- Section Header -->
+      <div class="studio-section-header services-header-block">
+        <div class="section-num-title">
+          <span class="section-index-num">02</span>
+          <div>
+            <span class="section-meta-eyebrow">CREATIVE OBJECTIVES &amp; PLAYBOOK</span>
+            <h2 class="section-main-heading services-mind-heading">WHAT'S ON YOUR MIND?</h2>
+          </div>
+        </div>
+        
+        <div class="services-header-meta">
+          <span class="studio-pill-indicator pastel-yellow" id="activeFormatLabel">Format: Carousel Guide (4:5)</span>
+          <span class="services-expand-hint">Click cards to expand real metrics &amp; recommendations</span>
+        </div>
+      </div>
+
+      <!-- 4 Interactive Cards Grid -->
+      <div class="services-mind-grid" role="region" aria-label="Interactive Content Objectives">
+
+        <!-- CARD 1: REEL -->
+        <article class="service-mind-card card-reel" data-service="reel" id="cardReel">
+          <div class="card-mind-header" role="button" tabindex="0" aria-expanded="false" aria-controls="reelExpandedContent">
+            <div class="card-mind-top">
+              <div class="icon-3d-box icon-3d-reel">
+                <div class="icon-3d-mesh-base pastel-pink"></div>
+                <span class="icon-3d-emoji">🎬</span>
+                <span class="icon-3d-shadow"></span>
+              </div>
+              <span class="card-format-pill pastel-pink">9:16 VIDEO</span>
+            </div>
+
+            <div class="card-mind-titles">
+              <h3 class="card-mind-name">REEL</h3>
+              <p class="card-mind-tagline">Make people stop scrolling.</p>
+            </div>
+
+            <div class="card-compact-metric">
+              <span class="metric-pill-dot pastel-pink"></span>
+              <span class="metric-pill-label">397 Avg Shares · 15.4% Peak ER</span>
+            </div>
+
+            <div class="card-expand-toggle-bar">
+              <span class="toggle-text">VIEW EVIDENCE &amp; METRICS</span>
+              <span class="toggle-arrow">▾</span>
+            </div>
+          </div>
+
+          <!-- Expandable Content Panel -->
+          <div class="service-card-expanded" id="reelExpandedContent" hidden>
+            <div class="expanded-inner-content">
+              
+              <!-- Real Metrics Grid -->
+              <div class="expanded-metrics-grid">
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">15.45%</span>
+                  <span class="exp-metric-lbl">Avg Video ER</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">397</span>
+                  <span class="exp-metric-lbl">Avg Shares / Reel</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">740</span>
+                  <span class="exp-metric-lbl">Peak Bali Shares</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">Fri 6:30P</span>
+                  <span class="exp-metric-lbl">Peak Velocity Window</span>
+                </div>
+              </div>
+
+              <!-- Recommendations & Playbook -->
+              <div class="expanded-playbook-box">
+                <h4 class="playbook-title">EVIDENCE-BASED REEL PLAYBOOK</h4>
+                <ul class="playbook-bullets">
+                  <li><strong>3-Second Disruption:</strong> Start with an immediate cost ticker or contrarian warning before the user can swipe away.</li>
+                  <li><strong>Center-Frame Kinetic Text:</strong> Over 70% watch without sound; keep bold subtitles within the center 60% of the screen.</li>
+                  <li><strong>Pacing Velocity:</strong> Keep edits under 18 seconds with rising audio tempo to maximize repeat replay loops.</li>
+                </ul>
+              </div>
+
+              <!-- Quick In-Studio Switcher -->
+              <div class="expanded-actions-row">
+                <button class="service-pill-btn service-card-action-btn pastel-pink" data-service="reel">
+                  <span>Activate Reel in Studio</span>
+                  <span class="action-btn-arrow">🎬 →</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2: POST -->
+        <article class="service-mind-card card-post is-active" data-service="carousel" id="cardPost">
+          <div class="card-mind-header" role="button" tabindex="0" aria-expanded="false" aria-controls="postExpandedContent">
+            <div class="card-mind-top">
+              <div class="icon-3d-box icon-3d-post">
+                <div class="icon-3d-mesh-base pastel-blue"></div>
+                <span class="icon-3d-emoji">📸</span>
+                <span class="icon-3d-shadow"></span>
+              </div>
+              <span class="card-format-pill pastel-blue">4:5 / 1:1 POST</span>
+            </div>
+
+            <div class="card-mind-titles">
+              <h3 class="card-mind-name">POST</h3>
+              <p class="card-mind-tagline">Create something worth saving.</p>
+            </div>
+
+            <div class="card-compact-metric">
+              <span class="metric-pill-dot pastel-blue"></span>
+              <span class="metric-pill-label">18.81% ER · 2,100 Saves (#1 In Dataset)</span>
+            </div>
+
+            <div class="card-expand-toggle-bar">
+              <span class="toggle-text">VIEW EVIDENCE &amp; METRICS</span>
+              <span class="toggle-arrow">▾</span>
+            </div>
+          </div>
+
+          <!-- Expandable Content Panel -->
+          <div class="service-card-expanded" id="postExpandedContent" hidden>
+            <div class="expanded-inner-content">
+              
+              <!-- Real Metrics Grid -->
+              <div class="expanded-metrics-grid">
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">18.81%</span>
+                  <span class="exp-metric-lbl">Peak Campaign ER</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">2,100</span>
+                  <span class="exp-metric-lbl">Kashmir Saves</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">+38%</span>
+                  <span class="exp-metric-lbl">Save Rate Lift</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">Sat 10:30A</span>
+                  <span class="exp-metric-lbl">Optimal Save Window</span>
+                </div>
+              </div>
+
+              <!-- Recommendations & Playbook -->
+              <div class="expanded-playbook-box">
+                <h4 class="playbook-title">EVIDENCE-BASED POST PLAYBOOK</h4>
+                <ul class="playbook-bullets">
+                  <li><strong>Utility Save-Stacking:</strong> Deliver actionable 5-slide checklists with specific hours, costs, and secret spots people bookmark for future trips.</li>
+                  <li><strong>Cover Promise Hook:</strong> State an explicit problem-solution hook on slide 1 ("5 Mistakes to Avoid on Your First Visit").</li>
+                  <li><strong>Call-To-Bookmark Finale:</strong> Direct audience to tap the bookmark icon on slide 5 before saving it to a vacation folder.</li>
+                </ul>
+              </div>
+
+              <!-- Quick In-Studio Switcher -->
+              <div class="expanded-actions-row">
+                <button class="service-pill-btn service-card-action-btn pastel-blue active" data-service="carousel">
+                  <span>Activate Carousel Post in Studio</span>
+                  <span class="action-btn-arrow">📸 →</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3: STORY -->
+        <article class="service-mind-card card-story" data-service="story" id="cardStory">
+          <div class="card-mind-header" role="button" tabindex="0" aria-expanded="false" aria-controls="storyExpandedContent">
+            <div class="card-mind-top">
+              <div class="icon-3d-box icon-3d-story">
+                <div class="icon-3d-mesh-base pastel-yellow"></div>
+                <span class="icon-3d-emoji">⏳</span>
+                <span class="icon-3d-shadow"></span>
+              </div>
+              <span class="card-format-pill pastel-yellow">24H STORY</span>
+            </div>
+
+            <div class="card-mind-titles">
+              <h3 class="card-mind-name">STORY</h3>
+              <p class="card-mind-tagline">Start a conversation in real time.</p>
+            </div>
+
+            <div class="card-compact-metric">
+              <span class="metric-pill-dot pastel-yellow"></span>
+              <span class="metric-pill-label">8.5% Direct Replies · +42% Poll Lift</span>
+            </div>
+
+            <div class="card-expand-toggle-bar">
+              <span class="toggle-text">VIEW EVIDENCE &amp; METRICS</span>
+              <span class="toggle-arrow">▾</span>
+            </div>
+          </div>
+
+          <!-- Expandable Content Panel -->
+          <div class="service-card-expanded" id="storyExpandedContent" hidden>
+            <div class="expanded-inner-content">
+              
+              <!-- Real Metrics Grid -->
+              <div class="expanded-metrics-grid">
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">8.5%</span>
+                  <span class="exp-metric-lbl">Direct Reply Rate</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">+42%</span>
+                  <span class="exp-metric-lbl">Poll Sticker Lift</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">9:16</span>
+                  <span class="exp-metric-lbl">Full Immersion</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">12:45 / 8:15</span>
+                  <span class="exp-metric-lbl">Daily Commute Peak</span>
+                </div>
+              </div>
+
+              <!-- Recommendations & Playbook -->
+              <div class="expanded-playbook-box">
+                <h4 class="playbook-title">EVIDENCE-BASED STORY PLAYBOOK</h4>
+                <ul class="playbook-bullets">
+                  <li><strong>Two-Choice Poll Stickers:</strong> Lower friction to zero with comparison polls ("Mountains 🏔️ vs Beaches 🏖️?") to engage casual viewers.</li>
+                  <li><strong>Candid Authenticity:</strong> Unfiltered behind-the-scenes travel captures drive 2.4x higher reply volume than polished brand graphics.</li>
+                  <li><strong>Open Question Feedback:</strong> Use Question Box stickers to ask followers for their biggest travel pain points.</li>
+                </ul>
+              </div>
+
+              <!-- Quick In-Studio Switcher -->
+              <div class="expanded-actions-row">
+                <button class="service-pill-btn service-card-action-btn pastel-yellow" data-service="story">
+                  <span>Activate Story in Studio</span>
+                  <span class="action-btn-arrow">⏳ →</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 4: COMMUNITY -->
+        <article class="service-mind-card card-community" data-service="thread" id="cardCommunity">
+          <div class="card-mind-header" role="button" tabindex="0" aria-expanded="false" aria-controls="communityExpandedContent">
+            <div class="card-mind-top">
+              <div class="icon-3d-box icon-3d-community">
+                <div class="icon-3d-mesh-base pastel-green"></div>
+                <span class="icon-3d-emoji">👥</span>
+                <span class="icon-3d-shadow"></span>
+              </div>
+              <span class="card-format-pill pastel-green">AUDIENCE AI</span>
+            </div>
+
+            <div class="card-mind-titles">
+              <h3 class="card-mind-name">COMMUNITY</h3>
+              <p class="card-mind-tagline">Listen to your audience.</p>
+            </div>
+
+            <div class="card-compact-metric">
+              <span class="metric-pill-dot pastel-green"></span>
+              <span class="metric-pill-label">98% Memory Match · 12.8% Comment Rate</span>
+            </div>
+
+            <div class="card-expand-toggle-bar">
+              <span class="toggle-text">VIEW EVIDENCE &amp; METRICS</span>
+              <span class="toggle-arrow">▾</span>
+            </div>
+          </div>
+
+          <!-- Expandable Content Panel -->
+          <div class="service-card-expanded" id="communityExpandedContent" hidden>
+            <div class="expanded-inner-content">
+              
+              <!-- Real Metrics Grid -->
+              <div class="expanded-metrics-grid">
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">98%</span>
+                  <span class="exp-metric-lbl">Hindsight Recall</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">12.8%</span>
+                  <span class="exp-metric-lbl">Comment Conversion</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">2.8x</span>
+                  <span class="exp-metric-lbl">&lt;60min Reply Boost</span>
+                </div>
+                <div class="exp-metric-item">
+                  <span class="exp-metric-val">Fri / Sun</span>
+                  <span class="exp-metric-lbl">High Sentiment Peak</span>
+                </div>
+              </div>
+
+              <!-- Recommendations & Playbook -->
+              <div class="expanded-playbook-box">
+                <h4 class="playbook-title">EVIDENCE-BASED COMMUNITY PLAYBOOK</h4>
+                <ul class="playbook-bullets">
+                  <li><strong>First 60-Minute Response Rule:</strong> Replying to initial comments within one hour triggers algorithm velocity and extends reach by 2.8x.</li>
+                  <li><strong>Conversational Sign-Off:</strong> End every caption with a focused question ("Which destination should we map next?") to invite replies.</li>
+                  <li><strong>Persistent Memory Grounding:</strong> Incorporate feedback from previous trip reviews into upcoming captions to prove you listen.</li>
+                </ul>
+              </div>
+
+              <!-- Quick In-Studio Switcher -->
+              <div class="expanded-actions-row">
+                <button class="service-pill-btn service-card-action-btn pastel-green" data-service="thread" id="consultCommunityAgentBtn">
+                  <span>Consult Agent on Community</span>
+                  <span class="action-btn-arrow">👥 →</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Preserved Real-Time Format Intelligence Meta Tray (Used by switchService) -->
+      <div class="studio-meta-tray" id="serviceMetaTray">
+        <div class="studio-meta-card pastel-yellow-soft">
+          <div class="meta-card-head">
+            <span class="meta-card-icon">📐</span>
+            <span class="meta-card-tag">TAILORED FRAMEWORK</span>
+          </div>
+          <strong class="meta-card-text" id="serviceFramework">5-Slide Save-Stacker Destination Blueprint</strong>
+        </div>
+
+        <div class="studio-meta-card pastel-pink-soft">
+          <div class="meta-card-head">
+            <span class="meta-card-icon">🎣</span>
+            <span class="meta-card-tag">VIRAL HOOK STYLE</span>
+          </div>
+          <strong class="meta-card-text" id="serviceHookStyle">Mistakes Checklist: '5 Things to Avoid on Your First Visit'</strong>
+        </div>
+
+        <div class="studio-meta-card pastel-green-soft">
+          <div class="meta-card-head">
+            <span class="meta-card-icon">⏰</span>
+            <span class="meta-card-tag">OPTIMAL POSTING TIME</span>
+          </div>
+          <strong class="meta-card-text" id="serviceOptimalTime">Friday &amp; Saturday · 10:30 AM (Peak Saves - 18.8%)</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 03: AGENT STUDIO & LIVE MOCKUP (Center-Stage)
+         ======================================================== -->
+    <section class="studio-section" id="agentStudio" aria-label="Interactive AI Agent Studio & Live Mockup">
+      <div class="studio-section-header">
+        <div class="section-num-title">
+          <span class="section-index-num">03</span>
+          <div>
+            <span class="section-meta-eyebrow">AGENT STUDIO</span>
+            <h2 class="section-main-heading">Conversational Agent &amp; Live Studio</h2>
+          </div>
+        </div>
+        <div class="agent-live-badge-wrap">
+          <span class="pulse-ring-dot"></span>
+          <span class="agent-status-label" id="agentContextSub">Synthesizing 30 historical posts &amp; Hindsight recall signals</span>
+        </div>
+      </div>
+
+      <!-- Two-Column Creative Workbench Layout -->
+      <div class="studio-workbench-grid">
+        
+        <!-- ====================================================
+             LEFT COLUMN: CREATIVE STUDIO CONTROLS & CONVERSATIONAL AGENT
+             ==================================================== -->
+        <div class="studio-workbench-left">
+          
+          <!-- Studio Angle Synthesis Box -->
+          <div class="studio-controls-card">
+            
+            <div class="studio-card-top">
+              <span class="card-eyebrow-tag pastel-yellow">STRATEGIC ANGLE SYNTHESIS</span>
+              <div class="agent-thinking-pill" id="agentThinkingIndicator" hidden>
+                <span class="spinner-ring"></span>
+                <span>Synthesizing signals...</span>
+              </div>
+            </div>
+
+            <!-- Dynamic Goal Selection (Preserves goal-chips) -->
+            <div class="prompt-goal-block">
+              <p class="studio-prompt-question" id="dynamicPromptQuestion">
+                What goal should we target for your <strong>Carousel Guide</strong>?
+              </p>
+
+              <div class="goal-chips-row" role="group" aria-label="Target post goal">
+                <button class="goal-chip active" data-goal="boost-comments">
+                  <span>💬 Boost Comments</span>
+                </button>
+                <button class="goal-chip" data-goal="drive-profile-visits">
+                  <span>👤 Profile Visits</span>
+                </button>
+                <button class="goal-chip" data-goal="save-worthy-checklist">
+                  <span>🔖 Save Checklist</span>
+                </button>
+                <button class="goal-chip" data-goal="behind-the-scenes">
+                  <span>🎬 Behind The Scenes</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Custom Prompt Input Row (Preserved) -->
+            <div class="studio-input-wrap">
+              <input type="text" id="customStudioPrompt" class="studio-input-bar" placeholder="Or specify custom angle (e.g. 'Budget 3-day itinerary for Kashmir or Bali hidden cafes')...">
+              <button id="generateIdeasBtn" class="studio-action-btn">
+                <span>SYNTHESIZE IDEAS</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Recommendations Deck: 3 Ranked Cards (Preserves #recommendationCardsGrid) -->
+          <div class="studio-recommendations-deck">
+            <div class="deck-header-row">
+              <h3 class="deck-title">Agent Recommendations</h3>
+              <span class="deck-badge pastel-green">Ranked by Engagement Velocity</span>
+            </div>
+            
+            <div class="recommendations-container" id="recommendationCardsGrid">
+              <!-- Dynamically populated via app.js -->
+            </div>
+          </div>
+
+          <!-- ==================================================
+               CONVERSATIONAL SOCIAL PULSE AGENT CHAT (Preserved)
+               ================================================== -->
+          <div class="studio-chat-card" id="chatCard">
+            
+            <div class="chat-card-topbar">
+              <div class="chat-identity">
+                <div class="agent-avatar-sq">✳</div>
+                <div>
+                  <h4 class="chat-name">Social Pulse Agent</h4>
+                  <p class="chat-status-sub">Grounded in 30 posts · Persistent Hindsight Recall</p>
+                </div>
+              </div>
+              <button class="chat-minimize-btn" id="chatCollapseToggle" aria-label="Toggle chat" title="Minimize / Expand chat">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+              </button>
+            </div>
+
+            <div class="chat-interactive-body" id="chatBody">
+              
+              <!-- Quick Prompt Pills -->
+              <div class="chat-quick-strip">
+                <span class="quick-label">QUICK PROMPTS:</span>
+                <button class="quick-prompt-pill" data-prompt="What are our top-performing travel destinations and formats based on the 30 posts?">📊 Top Destinations</button>
+                <button class="quick-prompt-pill" data-prompt="Create a high-impact 5-slide carousel guide for Kashmir travel mistakes with caption, hashtags, and optimal time.">✍️ Kashmir Carousel (4:5)</button>
+                <button class="quick-prompt-pill" data-prompt="Script a viral 9:16 Reel for Bali budget travel tips with hook, scene cues, and audio recommendation.">🎬 Bali Reel Script (9:16)</button>
+                <button class="quick-prompt-pill" data-prompt="What are our best days and times to post according to the historical dataset?">⏰ Best Posting Times</button>
+              </div>
+
+              <!-- Message Stream Container -->
+              <div class="studio-messages-stream" id="chatMessagesStream">
+                <div class="message-bubble agent-message">
+                  <div class="message-sender">
+                    <span class="agent-tag">Social Pulse Agent</span>
+                    <span class="message-time">Just now</span>
+                  </div>
+                  <div class="message-text">
+                    Hello! I’m your Social Pulse Agent, powered by your 30-post Wanderlust Chronicles dataset and persistent Hindsight memory bank.
+                    <br><br>
+                    Ask me any questions about travel social strategy, engagement rates, or caption angles — or ask me to generate a <strong>Carousel</strong>, <strong>Reel script</strong>, <strong>Story</strong>, or <strong>Feed post</strong>. I’ll answer conversationally and synchronize your live mockup on the right in real time!
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chat Input Form -->
+              <div class="studio-chat-input-row">
+                <form id="chatForm" class="chat-form-inner">
+                  <input type="text" id="chatInputText" class="chat-text-box" placeholder="Ask a question or request a caption/script..." autocomplete="off">
+                  <button type="submit" class="chat-submit-button" id="chatSendBtn" aria-label="Send message">
+                    <span>SEND</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  </button>
+                </form>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ====================================================
+             RIGHT COLUMN: LIVE FEED MOCKUP & ENGAGEMENT PREDICTOR
+             ==================================================== -->
+        <div class="studio-workbench-right">
+          
+          <div class="live-mockup-wrapper">
+            
+            <!-- Mockup Header Bar -->
+            <div class="mockup-studio-header">
+              <div class="mockup-header-title-box">
+                <span class="live-recording-tag">● LIVE PREVIEW</span>
+                <h3 class="mockup-platform-heading" id="previewPlatformTitle">Carousel Guide Preview (4:5)</h3>
+              </div>
+
+              <!-- Copy Production Media Kit Button -->
+              <button class="studio-copy-kit-btn" id="copyMediaKitBtn" title="Copy caption and complete creative production prompt kit">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span>COPY CAPTION &amp; MEDIA KIT</span>
+              </button>
+            </div>
+
+            <!-- Social Card Mockup Stage (Preserved IDs) -->
+            <div class="social-feed-mockup" id="socialFeedMockup">
+              
+              <!-- Mockup Profile Bar -->
+              <div class="mockup-profile-bar">
+                <div class="mockup-profile-info">
+                  <div class="mockup-avatar-wrap">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=100&h=100&q=80" alt="Brand avatar" class="mockup-avatar-img" id="mockupBrandAvatar">
+                  </div>
+                  <div class="mockup-names">
+                    <div class="mockup-handle-row">
+                      <span class="mockup-handle" id="mockupBrandHandle">wanderlust.chronicles</span>
+                      <svg class="verified-badge-icon" width="14" height="14" viewBox="0 0 24 24" fill="#3897f0"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                      <span class="mockup-dot">·</span>
+                      <span class="mockup-time" id="mockupPostTime">Friday · 10:30 AM</span>
+                    </div>
+                    <span class="mockup-location" id="mockupLocation">Srinagar, Kashmir · Valley Trails</span>
+                  </div>
+                </div>
+                <button class="mockup-more-btn" aria-label="Post options">•••</button>
+              </div>
+
+              <!-- Media Visual Stage (Dynamic Aspect Ratio Controlled by data-format) -->
+              <div class="mockup-media-stage" id="mockupMediaStage" data-format="carousel">
+                <img src="assets/kashmir_preview.jpg" alt="Active social post visual" class="mockup-image" id="mockupImage">
+                
+                <!-- Format Overlays -->
+                <div class="mockup-media-overlay" id="mockupMediaOverlay">
+                  <div class="audio-pill-floating" id="mockupAudioPill">
+                    <span class="audio-wave">♫</span>
+                    <span id="mockupAudioText">Wanderlust Chronicles — Mountain Echoes</span>
+                  </div>
+                  <div class="reel-view-counter" id="mockupFormatBadge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span id="mockupFormatBadgeText">Carousel Guide (4:5)</span>
+                  </div>
+                </div>
+
+                <!-- Carousel Controls Layer (Preserved) -->
+                <div class="carousel-controls-layer" id="carouselControlsLayer">
+                  <span class="carousel-slide-badge" id="carouselSlideBadge">Slide 1 of 5</span>
+                  <button class="carousel-nav-btn carousel-prev-btn" id="carouselPrevBtn" aria-label="Previous slide" title="Previous slide">&#8249;</button>
+                  <button class="carousel-nav-btn carousel-next-btn" id="carouselNextBtn" aria-label="Next slide" title="Next slide">&#8250;</button>
+                  <div class="carousel-dots-row" id="carouselDotsRow">
+                    <span class="carousel-dot active"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                  </div>
+                  <div class="carousel-slide-content-overlay" id="carouselSlideOverlay">
+                    <h5 class="slide-content-title" id="carouselSlideTitle">Mistake #1: Skipping Early Dal Lake Shikara</h5>
+                    <p class="slide-content-body" id="carouselSlideBody">Arrive before 7:00 AM for glass-like water reflections and floating vegetable markets before tourist crowds.</p>
+                  </div>
+                </div>
+
+                <!-- Reel Controls Layer (Preserved) -->
+                <div class="reel-controls-layer" id="reelControlsLayer" style="display: none;">
+                  <div class="reel-floating-actions">
+                    <div class="reel-action-item">
+                      <div class="reel-action-icon">❤️</div>
+                      <span>2.4k</span>
+                    </div>
+                    <div class="reel-action-item">
+                      <div class="reel-action-icon">💬</div>
+                      <span>188</span>
+                    </div>
+                    <div class="reel-action-item">
+                      <div class="reel-action-icon">↗️</div>
+                      <span>740</span>
+                    </div>
+                    <div class="reel-action-item">
+                      <div class="reel-action-icon">🔖</div>
+                      <span>1.6k</span>
+                    </div>
+                  </div>
+                  <div class="reel-script-banner" id="reelScriptBanner">
+                    <span class="reel-script-tag">🎬 Script Hook &amp; Cue</span>
+                    <p class="reel-script-text" id="reelScriptText">"POV: What 1 day in Bali actually costs if you avoid tourist traps..."</p>
+                  </div>
+                </div>
+
+                <!-- Story Controls Layer (Preserved) -->
+                <div class="story-controls-layer" id="storyControlsLayer" style="display: none;">
+                  <div class="story-progress-bar-row">
+                    <div class="story-progress-seg filled"></div>
+                    <div class="story-progress-seg"></div>
+                    <div class="story-progress-seg"></div>
+                  </div>
+                  <div class="story-top-profile">
+                    <div class="story-user-tag">
+                      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=60&h=60&q=80" alt="Avatar" class="story-avatar-mini">
+                      <span>wanderlust.chronicles</span>
+                      <span class="story-time-mini">2h</span>
+                    </div>
+                    <button class="story-close-btn">&times;</button>
+                  </div>
+                  <div class="story-interactive-card" id="storyInteractiveCard">
+                    <p class="story-card-question" id="storyQuestionText">Have you explored Kashmir in the summer?</p>
+                    <div class="story-card-btn-row">
+                      <button class="story-vote-btn">Yes, it's magical! ✨</button>
+                      <button class="story-vote-btn">On my bucket list 🏔️</button>
+                    </div>
+                  </div>
+                  <div class="story-reply-pill">
+                    <span>Send message...</span>
+                    <span>❤️ 🔥</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Action Bar (Heart, Comment, Share, Bookmark) -->
+              <div class="mockup-action-bar">
+                <div class="mockup-action-left">
+                  <button class="mockup-btn like-btn" id="mockupLikeBtn" aria-label="Like post">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <span id="mockupLikeCount">1,510</span>
+                  </button>
+                  <button class="mockup-btn comment-btn" aria-label="Comment on post">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span id="mockupCommentCount">184</span>
+                  </button>
+                  <button class="mockup-btn share-btn" aria-label="Share post">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    <span id="mockupShareCount">420</span>
+                  </button>
+                </div>
+                <button class="mockup-btn bookmark-btn" id="mockupSaveBtn" aria-label="Save post">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                </button>
+              </div>
+
+              <!-- Caption & Tags (Preserved) -->
+              <div class="mockup-caption-section">
+                <p class="mockup-caption-text">
+                  <strong class="caption-user" id="captionUser">wanderlust.chronicles</strong>
+                  <span id="mockupCaptionBody">
+                    5 mistakes to avoid on your first Kashmir trip 🏔️
+                    <br><br>
+                    Save this before you pack:
+                    1. Don't book shikara rides midday — go at 6:30 AM for glass-like reflections.
+                    2. Cash is king in Sonamarg &amp; Gulmarg; ATMs frequently lose connection.
+                    3. Pack thermal base layers even in June for high-altitude passes.
+                    <br><br>
+                    Which Indian mountain valley is your favorite? Tell us below 👇
+                  </span>
+                </p>
+                <div class="mockup-tags" id="mockupTags">
+                  #WanderlustChronicles #KashmirDiaries #TravelTips #IncredibleIndia #HimalayanAdventures
+                </div>
+              </div>
+
+            </div>
+
+            <!-- AI Engagement Score Predictor Card (Preserved) -->
+            <div class="engagement-predictor-card">
+              <div class="predictor-top-row">
+                <div class="predictor-title-box">
+                  <span class="predictor-badge pastel-green">AI PREDICTOR ENGINE</span>
+                  <h4 class="predictor-headline">AI Engagement Score Predictor</h4>
+                </div>
+                <div class="predictor-score-pill">
+                  <span class="score-number" id="predictorScoreNum">94</span>
+                  <span class="score-max">/100</span>
+                </div>
+              </div>
+
+              <!-- Metric Breakdown Bars -->
+              <div class="predictor-metrics-grid">
+                
+                <div class="meter-bar-item">
+                  <div class="meter-label-row">
+                    <span class="meter-name">3-Second Hook Retention</span>
+                    <strong class="meter-percent" id="metricHookPercent">96%</strong>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-fill fill-pink" id="metricHookBar" style="width: 96%;"></div>
+                  </div>
+                </div>
+
+                <div class="meter-bar-item">
+                  <div class="meter-label-row">
+                    <span class="meter-name">Viral Shareability Index</span>
+                    <strong class="meter-percent" id="metricSharePercent">91%</strong>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-fill fill-blue" id="metricShareBar" style="width: 91%;"></div>
+                  </div>
+                </div>
+
+                <div class="meter-bar-item">
+                  <div class="meter-label-row">
+                    <span class="meter-name">Comment Trigger Potential</span>
+                    <strong class="meter-percent" id="metricCommentPercent">95%</strong>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-fill fill-green" id="metricCommentBar" style="width: 95%;"></div>
+                  </div>
+                </div>
+
+                <div class="meter-bar-item">
+                  <div class="meter-label-row">
+                    <span class="meter-name">Hindsight Audience Memory Fit</span>
+                    <strong class="meter-percent" id="metricMemoryPercent">98%</strong>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-fill fill-yellow" id="metricMemoryBar" style="width: 98%;"></div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="predictor-footer-insight">
+                <span class="insight-sparkle">💡</span>
+                <span id="predictorInsightText">
+                  Strongest signal: Travel packing checklists and mistake itineraries yield <strong>+38% higher save velocity</strong> across our 30 historical posts.
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 04: STUDIO DESK & CONTACT
+         ======================================================== -->
+    <section class="studio-section studio-contact-section" id="contact" aria-label="Studio Desk and Contact">
+      <div class="studio-section-header">
+        <div class="section-num-title">
+          <span class="section-index-num">04</span>
+          <div>
+            <span class="section-meta-eyebrow">STUDIO DESK</span>
+            <h2 class="section-main-heading">Studio Desk &amp; Export</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-editorial-card">
+        <div class="contact-left">
+          <h3 class="contact-giant-phrase">LET'S GROW YOUR AUDIENCE.</h3>
+          <p class="contact-sub">
+            Social Pulse continuous learning loop updates automatically with every post published. Keep your creative intuition grounded in real engagement science.
+          </p>
+          <div class="contact-badges-row">
+            <span class="studio-tag-pill pastel-yellow">MODEL: OPENAI/GPT-OSS-120B</span>
+            <span class="studio-tag-pill pastel-green">HINDSIGHT BANK: SOCIAL-PULSE-DEMO</span>
+            <span class="studio-tag-pill pastel-blue">BRAND: WANDERLUST CHRONICLES</span>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <div class="contact-action-box">
+            <h4>Ready to publish?</h4>
+            <p>Export your full creative package including captions, slide cues, video scripts, and hashtags.</p>
+            <button class="studio-cta-btn" onclick="document.getElementById('copyMediaKitBtn').click()">
+              <span>EXPORT ACTIVE MEDIA KIT</span>
+              <span class="cta-arrow">📋</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Studio Footer Bar -->
+      <footer class="studio-footer-bottom">
+        <div class="footer-left">
+          <span>Social Pulse ✳ — Creative Intelligence Studio</span>
+          <span class="footer-dot">·</span>
+          <span>Single Brand Context: Wanderlust Chronicles</span>
+        </div>
+        <div class="footer-right">
+          <a href="#home">Back to top ↑</a>
+        </div>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       RATIONALE & HINDSIGHT MEMORY MODAL DIALOG (Preserved)
+       ======================================================== -->
+  <div class="modal-backdrop" id="rationaleModal" hidden style="display: none;">
+    <div class="modal-dialog-card studio-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="modal-icon-badge">🧠</div>
+          <div>
+            <h3 class="modal-title" id="modalTitle">AI Rationale &amp; Hindsight Memory Bank</h3>
+            <span class="modal-subtitle" id="modalSubtitle">Deep-dive into the data evidence and audience signals driving this recommendation</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body-content" id="modalBodyContent">
+        <!-- Dynamically populated in app.js -->
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary-studio" id="modalDismissBtn">Close Rationale</button>
+        <button class="btn-primary-studio" id="modalAcceptFromModalBtn">Accept &amp; Load This Idea</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container (Preserved) -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>
